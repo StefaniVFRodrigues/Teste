@@ -1,0 +1,450 @@
+/* Primeiro definições padrão para a pag inteira */
+
+@use 'variaveis';
+@use 'mixins';
+
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: none;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html{
+    font-size: 62.5%;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} 
+
+.container{
+    display: grid;
+    grid-template-columns: 1fr 25rem ;
+    grid-template-rows: 12vh 1fr 15vh ;
+    height: 100vh;
+    width: 100vw;
+    background: variaveis.$bg-fundo;
+
+    @include mixins.mobile{
+        grid-template-rows: 10vh 1fr 12vh 10vh;
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Aqui começa as definições de header */
+
+header {
+    grid-row: 1/2;
+    grid-column: 1/3;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas: "left right";
+    background: variaveis.$bg-fundo;
+    align-items: center;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    width: 100%;
+    
+    @include mixins.mobile{
+        grid-row: 1/2;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        
+    }
+
+
+    .esquerda {
+        grid-area: left;
+        display: flex;
+        align-items: center;
+    
+
+        img {
+            height: 7rem;
+            margin-right: 1.5rem;
+            border-radius: 10%;
+
+            @include mixins.mobile {
+                width: 4rem;
+                height: 4rem;
+                border-radius: 50%;
+            }
+        }
+
+        input {
+            color: variaveis.$color-fonts;
+            background: variaveis.$bg-input;
+            font-size: 1.5rem;
+            width: 40rem;
+            height: 6rem;
+            padding: 20px 5px 5px;
+            border: none;
+            outline: none;
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+            margin-left: 1.5rem;
+
+            @include mixins.mobile {
+                display: none;
+            }
+        }
+
+        input::placeholder {
+            color: variaveis.$color-fonts;
+            font-weight: 700;
+        }
+
+        i.bx-search-alt-2 {
+            font-size: 6em;
+            margin-left:1.5rem;
+            color: variaveis.$color-fonts;
+
+            @include mixins.mobile {
+                font-size: 3.5rem;
+                margin-left: 20.5rem;
+            }
+        }
+
+        .email {
+            position: relative;
+            margin-left: 3rem;
+
+            @include mixins.mobile {
+                margin-left: 1rem;
+            }
+        
+
+            i.bx-envelope {
+                font-size: 6rem;
+                color: variaveis.$color-fonts;
+
+                @include mixins.mobile {
+                    font-size: 3.5rem;
+                }
+            }
+
+            .alerta {
+                background: #fff;
+                position: absolute;
+                bottom: 4.5rem;
+                left: 5.5rem;
+                border-radius: 5rem;
+                height: 3rem;
+                width: 3rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: variaveis.$color-fonts;
+                font-size: 2rem;
+                color: #fff;
+
+                @include mixins.mobile {
+                    bottom: 2.5rem;
+                    left: 2.5rem;
+                    height: 1.5rem;
+                    width: 1.5rem;
+                    font-size: 0;
+                }
+            }
+        }
+    }
+
+    .caixa_perfil {
+        grid-area: right;
+        display: flex; /* Define que a caixa de perfil fica na área "right" */
+        height: 100%;
+        gap: 1.5rem;
+        align-items: center;
+
+        .escrita {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+            gap: 1rem;
+
+            @include mixins.mobile {
+                display: none;
+            }
+
+            p {
+                font-size: 3rem;
+                font-weight: 600;
+                color: variaveis.$color-fonts;
+            }
+
+            button {
+                background: none;
+                height: 3rem;
+                font-size: 2rem;
+                color: variaveis.$color-fonts;
+                font-weight: 600;
+                cursor: pointer;
+            }
+        }
+        img {
+            height: 8rem;
+            width: 10rem;
+            border-radius: 15%;
+
+            @include mixins.mobile {
+                height: 3rem;
+                width: 3rem;
+                border-radius: 50%;
+                margin-bottom: 0.7rem;
+            }
+        }
+    }
+}
+
+/* Aqui começa as definições da main */
+
+main{
+    grid-row: 2/3;
+    grid-column: 1/2;
+    background: variaveis.$bg-input;
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+
+    @include mixins.mobile{
+        grid-row: 2/3;
+        height: 98%;
+        width: 98%;
+        border-radius: 2rem;
+        margin-left: 0.4rem;
+    }
+
+}
+
+/* Aqui começa as definições da aba lateral */
+
+aside{
+    grid-row: 2/3;
+    grid-column: 2/3;
+    background: variaveis.$bg-fundo;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include mixins.mobile{
+        display: none;
+    }
+
+    .adicionar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 80%;
+        gap: 0.5rem;
+        border: .3rem solid variaveis.$color-fonts;
+        border-radius: 10%;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        cursor: pointer;
+
+        i{
+            font-size: 6rem;
+            color: variaveis.$color-fonts;
+        }
+
+        button {
+            background: none;
+            font-size: 2rem;
+            font-weight: 600;
+            color: variaveis.$color-fonts;
+            cursor: pointer;
+        }
+    }
+
+    .lista_amigos {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+
+        .pessoa {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: auto;
+            width: 100%;
+
+            .indentificador {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                width: 100%;
+                margin-bottom: -0.5rem;
+
+                img {
+                    height: 7rem;
+                    border-radius: 15%;
+                }
+
+                span {
+                    font-size: 3rem;
+                    color: variaveis.$color-fonts;
+                }
+
+                button {
+                    background: none;
+                    height: 7rem;
+                    font-size: 5.5rem;
+                    color: variaveis.$color-fonts;
+                }
+            }
+            span {
+                font-size: 1.5rem;
+                color: variaveis.$color-fonts;
+                font-weight: 600;
+            }
+        }
+    }
+}
+
+/* Aqui começa as definições da reprodução */
+
+.reproducao {
+    grid-row: 3/4;
+    grid-column: 1/3;
+    background: variaveis.$bg-fundo;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-top: 0.2rem solid variaveis.$color-fonts;
+    border-bottom: 0.2rem solid variaveis.$color-fonts;
+
+    @include mixins.mobile{
+        grid-row: 3/4;
+    }
+
+    img {
+        border-radius: 10%;
+        height: 8rem;
+
+        @include mixins.mobile{
+            height: 5rem;
+            border-radius: 20%;
+        }
+    }
+
+    .organizando {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding-right: 2rem;
+
+        @include mixins.mobile{
+            padding-right: 0;
+        }
+
+        .tocando {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-left: 2rem;
+            margin-right: 2rem;
+            
+            
+            @include mixins.mobile{
+                margin-left: 1rem;
+                margin-right: 0.5rem;
+            }
+            
+
+            span {
+                font-size: 3rem;
+                color: variaveis.$color-fonts;
+                
+                @include mixins.mobile{
+                    font-size: 1.5rem;
+                    margin-bottom: 1rem;
+                }
+            }
+
+            .barra-reproducao {
+                width: 80rem;
+                height: .5rem;
+                border-radius: 5rem;
+                position: relative;
+                background: variaveis.$bg-input;
+
+                @include mixins.mobile{
+                    width: 22rem;
+                }
+            }
+
+            .progresso {
+                width: 50%;
+                height: 100%;
+                border-radius: 5rem;
+                position: absolute;
+                background: variaveis.$color-fonts;
+            }
+        }
+
+        .botoes {
+            width: 20rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+
+            @include mixins.mobile{
+                align-items: start;
+                width: 10rem;
+                margin-right: 1rem;
+            }
+
+            button {
+                background: none;
+            }
+
+            i {
+                font-size: 6rem;
+                font-weight: 600;
+                color: variaveis.$color-fonts;
+
+                @include mixins.mobile{
+                    font-size: 3rem;
+                }
+            }
+        }
+    }
+}
+
+/* Aqui começa as definições do footer do mobile */
+
+footer {
+    display: none;
+
+    @include mixins.mobile {
+        background: variaveis.$bg-fundo;
+        grid-row: 4/5;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+    
+    button {
+        background: none;
+    }
+
+    i {
+        font-size: 6rem;
+        font-weight: 600;
+        color: variaveis.$color-fonts;
+
+        @include mixins.mobile{
+            font-size: 4rem;
+        }
+    }
+}
